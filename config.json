@@ -1,8 +1,41 @@
 {
+  "log": {
+    "loglevel": "warning"
+  },
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "geosite:category-ads-all",
+          "geosite:category-ads",
+          "geosite:category-porn",
+          "geosite:CATEGORY-SHOPPING-IR",
+          "geosite:OOKLA-SPEEDTEST",
+          "geosite:OOKLA-SPEEDTEST-ADS",
+          "geosite:ADJUST-ADS",
+          "geosite:YOUKU-ADS",
+          "geosite:YAHOO-ADS",
+          "geosite:GOOGLE-ADS",
+          "geosite:XIAOMI-ADS",
+          "geosite:WHATSAPP-ADS",
+          "geosite:UNITY-ADS",
+          "geosite:UMENG-ADS",
+          "geosite:UBERADS-ADS",
+          "geosite:TENCENT-ADS",
+          "geosite:TELEVISION-ADS",
+          "geosite:TAPPX-ADS",
+          "geosite:CATEGORY-PAYMENT-IR",
+          "geosite:CATEGORY-BANK-IR"
+        ],
+        "outboundTag": "block"
+      }
+    ]
+  },
   "inbounds": [
     {
-      "listen": "127.0.0.1", //只监听本机，避免本机外的机器探测到下面端口。
-      "port": SETPORT, //VLESS+SplitHTTP 监听端口
+      "listen": "0.0.0.0",
+      "port": SETPORT,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -13,40 +46,18 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "splithttp",
-        "splithttpSettings": {
-          "path": "/" //修改为自己的路径
-        }
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
+        "network": "ws"
       }
     }
   ],
-  "routing": {
-    "rules": [
-      {
-        "type": "field",
-        "protocol": [
-          "bittorrent"
-        ],
-        "outboundTag": "blocked"
-      }
-    ]
-  },
   "outbounds": [
     {
       "protocol": "freedom",
-      "settings": {}
+      "tag": "direct"
     },
     {
-      "tag": "blocked",
       "protocol": "blackhole",
-      "settings": {}
+      "tag": "block"
     }
   ]
 }
