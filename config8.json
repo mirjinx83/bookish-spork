@@ -32,6 +32,28 @@
     }
   ],
   "outbounds": [
+          {
+        "tag": "WARP",
+        "protocol": "wireguard",
+        "settings": {
+          "secretKey": "gJz9zuxBZXnrWhdaJLB7aZwR94ZjkxJMwHCVr/WLklQ=",
+          "address": [
+            "172.16.0.2/32"
+          ],
+          "peers": [
+            {
+              "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+              "allowedIPs": [
+                "0.0.0.0/0",
+                "::/0"
+              ],
+              "endpoint": "162.159.195.4:1018"
+            }
+          ],
+          "reserved": [149,200,163],
+          "mtu": 1280
+        }
+      },
     {
       "protocol": "freedom",
       "tag": "direct"
